@@ -1,62 +1,42 @@
 #include "ofApp.h"
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
-    // kies random start coordinaten
-    x = ofRandom(0, ofGetWidth());
-    y = ofRandom(0, ofGetHeight());
-
-    // random snelheid
-    speedX = ofRandom(-30, 30);
-    speedY = ofRandom(-30, 30);
-
-    // grootte van cirkel
-    radius = 20;
-
-    color.set(ofRandom(255),ofRandom(255),ofRandom(255));
+	gui.setup("Ballen");
+	gui.add(sliderSize.setup("Size",25,1,200));
+	gui.add(sliderSpeedX.setup("Horizontale Snelheid",3,1,100));
+    gui.add(sliderSpeedY.setup("Verticale Snelheid",3,1,100));
+    ofBackground(ofRandom(0,225), ofRandom(0,225), ofRandom(0,225));
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-
-    // links/ rechts tegen de rand aan? keer om!
-    if(x < 0 ) {
-        x = 0;
-        speedX = -speedX;
-    } else if(x > ofGetWidth()) {
-        x = ofGetWidth();
-        speedX = -speedX;
+    for (int i=0; i<balls.size(); i++) {
+        balls[i].update();
     }
-
-    // boven/onder tegen de rand aan? keer om!
-    if(y < 0 ) {
-        y = 0;
-        speedY = -speedY;
-    } else if(y > ofGetHeight()) {
-        y = ofGetHeight();
-        speedY = -speedY;
-    }
-
-    // bereken nieuwe coordinaten
-    x+=speedX;
-    y+=speedY;
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    ofSetColor(color);
-    ofCircle(x, y, radius);
-    
-    ofSetColor(color*2);
-    ofCircle(x/2, y, radius/2);
-    
-    ofSetColor(color/2);
-    ofCircle(x, y/3, radius*2);
+    for (int i=0; i<balls.size(); i++) {
+        balls[i].draw();
+    }
+	gui.draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-
+	if (key == ' ')
+	{
+		Ball newBall(sliderSize, sliderSpeedX, sliderSpeedY);
+        balls.push_back(newBall);
+	}
+	else if ((key == OF_KEY_BACKSPACE) && (balls.size() > 0))
+	{
+		balls.pop_back();
+	}
 }
 
 //--------------------------------------------------------------
@@ -98,3 +78,4 @@ void ofApp::gotMessage(ofMessage msg) {
 void ofApp::dragEvent(ofDragInfo dragInfo) {
 
 }
+

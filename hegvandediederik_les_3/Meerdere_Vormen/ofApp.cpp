@@ -2,56 +2,69 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    // kies random start coordinaten
-    x = ofRandom(0, ofGetWidth());
-    y = ofRandom(0, ofGetHeight());
-
-    // random snelheid
-    speedX = ofRandom(-30, 30);
-    speedY = ofRandom(-30, 30);
-
-    // grootte van cirkel
-    radius = 20;
-
-    color.set(ofRandom(255),ofRandom(255),ofRandom(255));
+    for (int t = 0; t < Aantal; t++ ){
+        
+        Balletje newBalletje;
+        newBalletje.setup();
+        VeelBallen.push_back(newBalletje);
+    }
+    
+    for (int t = 0; t < Aantal; t++ ){
+        
+        Triangle newTriangle;
+        newTriangle.setup();
+        VeelTriangles.push_back(newTriangle);
+        }
+    
+    for (int t = 0; t < Aantal; t++ ){
+        
+        Vierkant newVierkant;
+        newVierkant.setup();
+        VeelVierkant.push_back(newVierkant);
+    }
+    
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
 
-    // links/ rechts tegen de rand aan? keer om!
-    if(x < 0 ) {
-        x = 0;
-        speedX = -speedX;
-    } else if(x > ofGetWidth()) {
-        x = ofGetWidth();
-        speedX = -speedX;
+     for (int t = 0; t < Aantal; t++ ){
+         VeelBallen[t].update();
+     }
+
+    for (int t = 0; t < Aantal; t++ ){
+        VeelTriangles[t].update();
     }
 
-    // boven/onder tegen de rand aan? keer om!
-    if(y < 0 ) {
-        y = 0;
-        speedY = -speedY;
-    } else if(y > ofGetHeight()) {
-        y = ofGetHeight();
-        speedY = -speedY;
+    for (int t = 0; t < Aantal; t++ ){
+        VeelVierkant[t].update();
     }
 
-    // bereken nieuwe coordinaten
-    x+=speedX;
-    y+=speedY;
+
+    
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    ofSetColor(color);
-    ofCircle(x, y, radius);
+    for (int t = 0; t < Aantal; t++){
+        VeelBallen[t].draw();
+    }
+
     
-    ofSetColor(color*2);
-    ofCircle(x/2, y, radius/2);
+    for (int t = 0; t < Aantal; t++ ){
+        VeelTriangles[t].draw();
+    }
+
+    for (int t = 0; t < Aantal; t++ ){
+        VeelVierkant[t].draw();
+    }
+
     
-    ofSetColor(color/2);
-    ofCircle(x, y/3, radius*2);
+    
+
 }
 
 //--------------------------------------------------------------
