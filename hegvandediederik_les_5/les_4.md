@@ -1,1 +1,0 @@
-Het is me niet gelukt om Pong te maken. Dit omdat ik simpelweg nog te weinig ervaring heb met OpenFrameworks, en er ook nog ander vakken zijn met huiswerk. Ook zijn de andere opdrachten me niet gelukt. Erg jammer, maar het is nou eenmaal fucked up moeilijk. 
