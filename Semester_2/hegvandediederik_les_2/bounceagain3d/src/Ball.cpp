@@ -12,12 +12,14 @@ void Ball::setup() {
   speed.z = ofRandom(-10, 10);
 
   radius = 50;
-
-  color.set(ofRandom(255), ofRandom(255), ofRandom(255));
-}
+  }
 
 void Ball::update() {
-  if (position.x < -BOX_MAX) {
+  
+    
+    color.set((ofNoise(ofGetElapsedTimeMillis() * 6.66) * 255), 128, 128);
+    
+    if (position.x < -BOX_MAX) {
     position.x = -BOX_MAX;
     speed.x *= -1;
   } else if (position.x > BOX_MAX) {

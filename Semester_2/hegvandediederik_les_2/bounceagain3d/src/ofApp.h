@@ -12,6 +12,7 @@ class ofApp : public ofBaseApp {
   void keyPressed(int key);
 
   Ball ball;
+    Ball ball2;
 
   ofLight light;
 

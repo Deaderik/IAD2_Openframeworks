@@ -9,7 +9,8 @@ void ofApp::setup() {
   drawLight = false;
 
   ball.setup();
-
+ball2.setup();
+    
   // plaats een light in de 3d ruimte
   light.setPointLight();
   light.setPosition(BOX_MAX, BOX_MAX, BOX_MAX);
@@ -17,6 +18,7 @@ void ofApp::setup() {
 
 void ofApp::update() {
   ball.update();
+    ball2.update();
 }
 
 void ofApp::draw() {
@@ -38,7 +40,7 @@ void ofApp::draw() {
   }
 
   ball.draw();
-
+  ball2.draw();
   light.disable();
 
   cam.end();
