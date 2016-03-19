@@ -159,10 +159,23 @@ void ofApp::keyPressed(int key) {
 
 void ofApp::mousePressed(int x, int y, int button) {
   // in het HSV plaatje, selecteer een kleur om een contour op te zoeken
-  findHue = hue.getPixels()[y * GRABBER_WIDTH + x];
-
+  
+    ofLog() << "klik:" << button << endl;
     
+    if (button == OF_MOUSE_BUTTON_LEFT) {
+        ofLog() << "klikte links " << endl;
+        findHue = hue.getPixels()[y * GRABBER_WIDTH + x];
+
+        
+        // hier de code voor de linker muis button
+        
+    } else if (button == OF_MOUSE_BUTTON_RIGHT) {
+        ofLog() << "klikte rechts" << endl;
+        findHue = hue2.getPixels()[y * GRABBER_WIDTH + x];
+
+        
+        // hier de code voor de rechter muis button
     
     // ik kan nergens vinden hoe ik de rechter en linker muisknop aanspreek :( 
-    
+    }
 }
