@@ -40,7 +40,13 @@ class ofApp : public ofBaseApp{
         int spinY;
         int spinX;
        
-    ofEasyCam cam;
-    ofLight light;
+        ofEasyCam cam;
+        ofLight light;
+    
+    ofSoundPlayer low;
+    ofSoundPlayer mid;
+    ofSoundPlayer hi;
+    ofVideoPlayer bart;
+ 
     
 };

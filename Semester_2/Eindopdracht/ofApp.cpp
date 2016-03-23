@@ -33,11 +33,27 @@ void ofApp::setup(){
 	soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
     
     
+    low.load("resonance_low.wav");
+    mid.load("resonance_mid.wav");
+    hi.load("resonance_high.wav");
+    
+    
+    hi.play();
+    mid.play();
+    hi.play();
+   
+    bart.loadMovie("bart.mp4");
+    bart.play();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 	
+    hi.setVolume(0.1f * (scaledVol) * 40); //Sets volume at 10% of maximum
+    mid.setVolume(0.1f * (scaledVol) * 40); //Sets volume at 10% of maximum
+    bart.update();
+    
+    
     box.set(400 * (2*scaledVol));
 
     
@@ -52,7 +68,7 @@ void ofApp::update(){
 		volHistory.erase(volHistory.begin(), volHistory.begin()+1);
 	}
     
-    spinX = (scaledVol * 600);
+    spinX = (scaledVol * 10);
     
 
 }
@@ -64,17 +80,17 @@ void ofApp::draw(){
     
     cam.begin();
 	
-    ofSetColor(225);
+    
 		
 	
 		
-//	// draw the average volume:
-	ofPushStyle();
-		ofPushMatrix();
+//	//  draw the average volume:
+//      ofPushStyle();
+//		ofPushMatrix();
 //		ofTranslate( 0, 0, 0);
 //    ofFill();
 //    ofSetColor(180 - (scaledVol*10),100 / (scaledVol * 10),60 / (scaledVol * 5));
-				ofDrawCircle(ofGetWidth()/2, ofGetHeight()/2, scaledVol * 190.0f);
+//				ofDrawCircle(ofGetWidth()/2, ofGetHeight()/2, scaledVol * 190.0f);
 		
 
 //    //lets draw the volume history as a graph
@@ -99,7 +115,7 @@ void ofApp::draw(){
 		
     
     
-    light.enable();
+
     
     box.setPosition(ofGetWidth() /2, ofGetHeight()/2, 0);
     
@@ -109,8 +125,9 @@ void ofApp::draw(){
     ofSetColor(100, 20, 255);
 
     box.draw();
-    light.disable();
+   
     cam.end();
+    bart.draw(0, 0);
   
 }
 
